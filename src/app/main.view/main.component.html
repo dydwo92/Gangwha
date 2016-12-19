@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="page-header">
+    <a [routerLink]='["/"]'>
+      <img src="/public/img/logo.png" alt="" width="150px">
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3" (window:resize)="onResize($event)">
+      <app-menu [mobileMenu]="mobileMenu"></app-menu>
+    </div>
+    <div class="col-sm-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
