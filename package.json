@@ -12,7 +12,6 @@
   },
   "private": true,
   "dependencies": {
-    "angularfire2": "^2.0.0-beta.6",
     "@angular/common": "2.2.3",
     "@angular/compiler": "2.2.3",
     "@angular/core": "2.2.3",
@@ -29,7 +28,8 @@
     "tinymce": "^4.5.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23",
-    "tinymce": "^4.5.0"
+    "tinymce": "^4.5.0",
+    "ts-md5": "^1.2.0"
   },
   "devDependencies": {
     "@angular/compiler-cli": "2.2.3",

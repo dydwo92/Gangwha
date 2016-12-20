@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
@@ -7,14 +6,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './detail.component.html'
 })
 export class DetailComponent {
-  articleList: FirebaseListObservable<any[]>;
+  articleList: any=[];
 
   sanitizeHTML(html: string) :SafeHtml{
       return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  constructor(af: AngularFire, private sanitizer: DomSanitizer) {
-    this.articleList = af.database.list('/articles');
+  constructor( private sanitizer: DomSanitizer) {
+
   }
 
 }

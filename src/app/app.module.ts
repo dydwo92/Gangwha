@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { EntranceModule } from './entrance.view/entrance.module';
 import { MainModule } from './main.view/main.module';
+
+import { FirstGatewayService, SecondGatewayService } from './service';
 
 import { APP_ROUTING } from './app.routing';
 
@@ -17,9 +20,13 @@ import { APP_ROUTING } from './app.routing';
     FormsModule,
     HttpModule,
     MainModule,
+    EntranceModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    FirstGatewayService,
+    SecondGatewayService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

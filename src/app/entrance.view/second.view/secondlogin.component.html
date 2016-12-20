@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <div class="centered">
+
+      <div class="row">
+        <ul style="list-style:none; padding:0px">
+          <a *ngFor="let user of userList">
+            <li class="menuButton">
+              <img src="{{ user.imagePath }}" class="img-circle img-square user-thumb">
+            </li>
+          </a>
+        </ul>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+          <input type="password" class="form-control" style="border-radius:0px;margin-top:10px" #passwd>
+          <a (click)="OnClick(passwd.value)">
+            <button type="button" class="btn btn-success btn-block" style="border-radius:0px;margin-top:10px">입장하기</button>
+          </a>
+        </div>
+      </div>
+
+    </div>
+</div>

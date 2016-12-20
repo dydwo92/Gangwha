@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 export class Article{
   constructor(public name:string, public title:string, public body:string) {};
@@ -20,13 +19,11 @@ export class Article{
 export class WriteComponent implements OnDestroy, AfterViewInit{
   editor;
   article: Article;
-  items: FirebaseListObservable<any>;
 
   @ViewChild('previewArticle') previewArticle: ElementRef;
 
-  constructor(af: AngularFire){
+  constructor(){
       this.article = new Article("yongjae","","");
-      this.items = af.database.list('/articles');
   }
 
   ngAfterViewInit(){
@@ -59,7 +56,7 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
       body : this.article.body
     };
 
-    this.items.push(sendData);
+    firebase.database().ref('articles').push(sendData);
     console.log(this.article);
   }
 }

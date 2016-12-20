@@ -2,6 +2,9 @@
   <a *ngFor="let menu of MenuList" class="list-group-item" [routerLink]="[menu.link]" style="border-radius: 0px">
     <span class="glyphicon {{ menu.glyphicon }} pull-right" aria-hidden="true"></span>{{ menu.name }}
   </a>
+  <a href="#" class="list-group-item" style="border-radius: 0px" (click)="Logout()">
+    <span class="glyphicon glyphicon-off pull-right" aria-hidden="true"></span>로그아웃
+  </a>
 </div>
 
 <!-- Mobile Menu -->
@@ -18,6 +21,12 @@
           <li class="menuButton">
             <button type="button" class="btn btn-info btn-circle btn-lg"><span class="glyphicon {{ menu.glyphicon }} pull-right" aria-hidden="true"></span></button>
             <p style="margin-top:20px;font-size:10px;color:black">{{ menu.name }}</p>
+          </li>
+        </a>
+        <a href="#" (click)="Logout()">
+          <li class="menuButton">
+            <button type="button" class="btn btn-info btn-circle btn-lg"><span class="glyphicon glyphicon-off pull-right" aria-hidden="true"></span></button>
+            <p style="margin-top:20px;font-size:10px;color:black">로그아웃</p>
           </li>
         </a>
       </ul>

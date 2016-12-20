@@ -1,0 +1,14 @@
+.wrapper {
+    position: relative;
+    height: 100vh;
+}
+
+.outer {
+    position: absolute;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.0);
+    border-radius: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
