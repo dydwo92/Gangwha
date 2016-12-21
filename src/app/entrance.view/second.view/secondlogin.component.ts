@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { SecondGatewayService } from '../../service';
+import { AngularFire } from 'angularfire2';
 
 @Component({
   animations:[
@@ -27,18 +28,18 @@ export class SecondLoginComponent {
   userSelected: boolean = false;
   userHasEmail: boolean = false;
 
-  constructor(private router: Router, private authService: SecondGatewayService) {
-    this.authService.isAuthenticated().subscribe((success) => {
+  constructor(private router: Router, private authService: SecondGatewayService, private af: AngularFire) {
+    // Check already logged in
+    this.af.auth.subscribe((success)=>{
       if(success){
         this.router.navigate(['home']);
       }
     });
 
-    firebase.database().ref('users/').once('value')
-        .then(snapshot => {
-          this.userList = snapshot.val();
-          this.userList.splice(0,1);
-        });
+    this.af.database.list('users/')
+      .subscribe(snapshots => {
+        this.userList = snapshots;
+      });
   }
 
   onUserClick(index: number){
