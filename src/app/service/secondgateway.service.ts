@@ -18,6 +18,23 @@ export class SecondGatewayService implements CanActivate {
           });
     }
 
+    emailUpdate(index: number, email:string){
+        var updates = {};
+        updates['/users/'+(index+1) + '/email'] = email;
+        return firebase.database().ref().update(updates);
+    }
+
+    signupUser(email: string, passwd: string, index: number){
+      firebase.auth().createUserWithEmailAndPassword(email, passwd)
+          .catch(err =>{
+            console.log(err.message);
+          })
+          .then(() => this.emailUpdate(index, email))
+          .catch(err => {
+            console.log(err);
+          });
+    }
+
     isAuthenticated(): Observable<boolean>{
       const subject = new Subject<boolean>();
         firebase.auth().onAuthStateChanged(function(user){

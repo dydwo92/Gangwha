@@ -1,8 +1,22 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  trigger,
+  transition,
+  style,
+  animate,
+  state
+} from '@angular/core';
 import { Md5 } from 'ts-md5/dist/md5';
 import { FirstGatewayService } from '../../service';
 
 @Component({
+  animations: [
+    trigger('CorrectIdChanged',[
+        state('true', style({ opacity: 1})),
+        state('false', style({ opacity: 0})),
+        transition('*=>*', animate('.5s'))
+      ])
+  ],
   selector: 'app-firstlogin',
   templateUrl : './firstlogin.component.html',
   styleUrls: ['./firstlogin.component.css']

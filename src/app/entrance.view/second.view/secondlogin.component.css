@@ -34,10 +34,10 @@
 }
 
 .menuButton:hover{
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .user-thumb{
   margin: auto;
-  width:100%;
+  width:90%;
 }

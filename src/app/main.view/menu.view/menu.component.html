@@ -8,9 +8,9 @@
 </div>
 
 <!-- Mobile Menu -->
-<div *ngIf="mobileMenu" class="footer" style="margin-bottom:30px">
- <button type="button" *ngIf="!mobileMenuDisplay" class="btn btn-info btn-circle btn-lg pull-right" style="margin:20px" (click)="mobileMenuDisplay = true"><i class="glyphicon glyphicon-plus"></i></button>
- <button type="button" *ngIf="mobileMenuDisplay" class="btn btn-danger btn-circle btn-lg pull-right" style="margin:20px" (click)="mobileMenuDisplay = false"><i class="glyphicon glyphicon-minus"></i></button>
+<div *ngIf="mobileMenu" class="footer">
+ <button type="button" *ngIf="!mobileMenuDisplay" class="btn btn-info btn-circle btn-lg pull-right" style="margin:10px" (click)="mobileMenuDisplay = true"><i class="glyphicon glyphicon-plus"></i></button>
+ <button type="button" *ngIf="mobileMenuDisplay" class="btn btn-danger btn-circle btn-lg pull-right" style="margin:10px" (click)="mobileMenuDisplay = false"><i class="glyphicon glyphicon-minus"></i></button>
 </div>
 
 <div *ngIf="mobileMenuDisplay && mobileMenu" class="centered">

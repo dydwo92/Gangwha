@@ -2,11 +2,16 @@
 
   <div class="wrapper">
     <div class="jumbotron outer">
-      <img src="/public/img/logo.png" width="250px">
-      <input type="password" class="form-control" style="border-radius:0px;margin-top:10px" (keyup)="checkId($event)">
-      <a *ngIf="CorrectId" [routerLink]="['select-user']">
-        <button type="button" class="btn btn-primary btn-block" style="border-radius:0px;margin-top:10px">입장하기</button>
-      </a>
+      <img src="/public/img/logo.png" width="250px" style="margin-bottom:10px">
+
+      <form>
+          <input type="password" class="form-control" (keyup)="checkId($event)">
+
+        <a *ngIf="CorrectId" [routerLink]="['select-user']">
+          <button type="submit" [@CorrectIdChanged]="CorrectId" class="btn btn-primary btn-block" style="border-radius:0px;margin-top:10px;opacity:0">입장하기</button>
+        </a>
+      </form>
+
     </div>
   </div>
 
