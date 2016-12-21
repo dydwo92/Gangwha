@@ -1,8 +1,16 @@
-<form>
-  <input type="text" class="form-control" placeholder="제목" style="border-radius:0px; margin-bottom:10px" [(ngModel)] = "article.title" name="title" required>
-  <textarea id="tinymce"></textarea>
-  <input type="submit" class="btn btn-primary" style="border-radius:0px;margin-top:10px" value="등록하기" (click)="SubmitArticle()" [ngClass]="{disabled: !buttonisOn}">
-</form>
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body">
+    <form>
+      <input type="text" class="form-control" placeholder="제목" style="border-radius:0px; margin-bottom:10px" [(ngModel)] = "article.title" name="title" required>
+      <textarea id="tinymce"></textarea>
+      <input type="submit" class="btn btn-primary"
+            style="border-radius:0px;margin-top:10px"
+            value="등록하기"
+            (click)="SubmitArticle()"
+            *ngIf="buttonisOn && authService.UserProfile['isLoggedIn']">
+    </form>
+  </div>
+</div>
 
 <hr style="margin: 10px 0 10px 0">
 
@@ -10,11 +18,11 @@
   <div class="panel-body">
     <div class="media">
       <div class="media-left">
-        <img src="http://lorempixel.com/50/50" width="50px" class="img-circle">
+        <img src="{{ authService.UserProfile['photoURL'] }}" width="50px" class="img-circle">
       </div>
       <div class="media-body">
         <h3 class="media-heading">{{ article.title }}</h3>
-          {{ article.name }}
+          {{ authService.UserProfile['displayName'] }}
       </div>
       <hr style="margin-top:10px;margin-bottom:10px">
       <div #previewArticle></div>

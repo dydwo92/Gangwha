@@ -1,11 +1,25 @@
 import { Router, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
-import { Subject, Observable } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx';
 import { AngularFire } from 'angularfire2';
 @Injectable()
 export class SecondGatewayService implements CanActivateChild {
+    UserProfile: any[] = [];
+    getProfile = new Subject();
 
-    constructor(private router: Router, private af: AngularFire){}
+    constructor(private router: Router, private af: AngularFire){
+      this.UserProfile['isLoggedIn'] = false;
+      af.auth.subscribe((auth)=>{
+        this.UserProfile['uid'] = auth.uid;
+        af.database.list('/users/'+auth.uid).subscribe((snapshot)=>{
+          snapshot.forEach(snapshot =>{
+            this.UserProfile[snapshot.$key] = snapshot.$value;
+          });
+          this.UserProfile['isLoggedIn'] = true;
+          this.getProfile.next(this.UserProfile);
+        });
+      });
+    }
 
     signinUser(email: string, passwd: string){
       this.af.auth.login({email: email, password: passwd})
@@ -17,22 +31,8 @@ export class SecondGatewayService implements CanActivateChild {
           });
     }
 
-    emailUpdate(index: number, email:string){
-        return this.af.database.object('/users'+(index+1)).update({email: email});
-    }
-
-    signupUser(email: string, passwd: string, index: number){
-      this.af.auth.createUser({email: email, password: passwd})
-          .catch(err =>{
-            console.log(err.message);
-          })
-          .then(() => this.emailUpdate(index, email))
-          .catch(err => {
-            console.log(err);
-          })
-          .then(()=>{
-            this.router.navigate(['home']);
-          });
+    updateProfile(uid: string,profile: any){
+      return this.af.database.list('/users/').update(uid, profile);
     }
 
     logout(){

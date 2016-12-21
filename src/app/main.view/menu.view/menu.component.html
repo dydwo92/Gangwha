@@ -14,7 +14,7 @@
 </div>
 
 <div *ngIf="mobileMenuDisplay && mobileMenu" class="centered">
-  <div class="panel panel-default" style="border-radius:0px;width: 75vw;height:60vh;margin:0px">
+  <div class="panel panel-default" style="border-radius:0px;width: 75vw;margin:0px;">
     <div class="panel-body">
       <ul style="list-style:none; padding:0px">
         <a *ngFor="let menu of MenuList" [routerLink]="[menu.link]" (click)="mobileMenuDisplay = false">

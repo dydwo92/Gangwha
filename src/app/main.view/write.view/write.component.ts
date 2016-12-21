@@ -8,9 +8,11 @@ import {
 import { Router } from '@angular/router';
 
 import { NgForm } from '@angular/forms';
+import { AngularFire } from 'angularfire2';
+import { SecondGatewayService } from '../../service';
 
 export class Article{
-  constructor(public name:string, public title:string, public body:string) {};
+  constructor(public title:string, public body:string) {};
 }
 
 @Component({
@@ -18,15 +20,13 @@ export class Article{
   templateUrl : './write.component.html'
 })
 export class WriteComponent implements OnDestroy, AfterViewInit{
-  buttonisOn:  boolean = true;
   editor;
-  article: Article;
+  article: Article = new Article("Title","");
+  buttonisOn: boolean = true;
 
   @ViewChild('previewArticle') previewArticle: ElementRef;
 
-  constructor(private router: Router){
-      this.article = new Article("yongjae","","");
-  }
+  constructor(private router: Router, private af: AngularFire, private authService: SecondGatewayService){}
 
   ngAfterViewInit(){
     tinymce.init({
@@ -54,18 +54,17 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
     this.buttonisOn = false;
     this.article.body = this.editor.getContent();
     const sendData = {
+      uid: this.authService.UserProfile['uid'],
       title : this.article.title,
-      name : this.article.name,
       body : this.article.body
     };
-
-    firebase.database().ref('articles').push(sendData).then(
-      ()=> {
-        this.router.navigate(['home']);
-      }).catch(
-      (err) => {
-        this.buttonisOn = true;
-        alert("Uploading Fail!");
-      });
+    this.af.database.list('/articles').push(sendData)
+        .then(()=>{
+          this.router.navigate(['home']);
+        })
+        .catch(
+        (err) => {
+          alert("Uploading Fail!");
+        });
   }
 }

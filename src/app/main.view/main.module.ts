@@ -8,6 +8,7 @@ import { DetailComponent } from './detail.view/detail.component';
 import { MenuComponent } from './menu.view/menu.component';
 import { WriteComponent } from './write.view/write.component';
 import { imageUploadComponent } from './imageUpload.view/imageupload.component';
+import { SettingComponent } from './setting.view/setting.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { imageUploadComponent } from './imageUpload.view/imageupload.component';
     DetailComponent,
     MenuComponent,
     WriteComponent,
-    imageUploadComponent
+    imageUploadComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,

@@ -2,11 +2,11 @@
   <div class="panel-body">
     <div class="media">
       <div class="media-left">
-        <img src="http://lorempixel.com/50/50" width="50px" class="img-circle">
+        <img src="{{ userReference[article.uid].photoURL }}" width="50px" class="img-circle">
       </div>
       <div class="media-body">
         <h3 class="media-heading">{{ article.title }}</h3>
-          {{ article.name }} | 시간
+          {{ userReference[article.uid].displayName }} | 시간
       </div>
       <hr style="margin-top:10px;margin-bottom:10px">
       <div [innerHTML] = "sanitizeHTML(article.body)"></div>
