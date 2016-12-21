@@ -1,6 +1,6 @@
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Subject, Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class SecondGatewayService implements CanActivate {
@@ -18,21 +18,25 @@ export class SecondGatewayService implements CanActivate {
           });
     }
 
-    isAuthenticated(){
-        var user = firebase.auth().currentUser;
-        if(user){
-          return true;
-        }else{
-          return false;
-        }
+    isAuthenticated(): Observable<boolean>{
+      const subject = new Subject<boolean>();
+        firebase.auth().onAuthStateChanged(function(user){
+          if(user){
+            subject.next(true);
+          }else{
+            subject.next(false);
+          }
+        });
+        return subject.asObservable();
     }
 
     logout(){
-      firebase.auth().signOut();
-      this.router.navigate(['/']);
+      firebase.auth().signOut().then(function(){
+        this.router.navigate(['/']);
+      });
     }
 
-    canActivate(): boolean{
-      return this.isAuthenticated();
+    canActivate(): Observable<boolean> | boolean{
+      return this.isAuthenticated().first();
     }
 }

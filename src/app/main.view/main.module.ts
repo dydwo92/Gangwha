@@ -7,13 +7,15 @@ import { MainComponent } from './main.component';
 import { DetailComponent } from './detail.view/detail.component';
 import { MenuComponent } from './menu.view/menu.component';
 import { WriteComponent } from './write.view/write.component';
+import { imageUploadComponent } from './imageUpload.view/imageupload.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     DetailComponent,
     MenuComponent,
-    WriteComponent
+    WriteComponent,
+    imageUploadComponent
   ],
   imports: [
     BrowserModule,

@@ -31,6 +31,6 @@ export class MenuComponent implements OnInit{
   MenuList: Menu[] = [
     new Menu("글 목록", ".", "glyphicon-th-list"),
     new Menu("글쓰기", "write", "glyphicon-pencil"),
-    new Menu("사진 업로드", ".", "glyphicon-picture")
+    new Menu("사진 업로드", "image-upload", "glyphicon-picture")
   ];
 }

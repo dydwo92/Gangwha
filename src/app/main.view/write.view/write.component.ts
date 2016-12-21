@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NgForm } from '@angular/forms';
 
@@ -17,12 +18,13 @@ export class Article{
   templateUrl : './write.component.html'
 })
 export class WriteComponent implements OnDestroy, AfterViewInit{
+  buttonisOn:  boolean = true;
   editor;
   article: Article;
 
   @ViewChild('previewArticle') previewArticle: ElementRef;
 
-  constructor(){
+  constructor(private router: Router){
       this.article = new Article("yongjae","","");
   }
 
@@ -49,6 +51,7 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
   }
 
   SubmitArticle(){
+    this.buttonisOn = false;
     this.article.body = this.editor.getContent();
     const sendData = {
       title : this.article.title,
@@ -56,7 +59,13 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
       body : this.article.body
     };
 
-    firebase.database().ref('articles').push(sendData);
-    console.log(this.article);
+    firebase.database().ref('articles').push(sendData).then(
+      ()=> {
+        this.router.navigate(['home']);
+      }).catch(
+      (err) => {
+        this.buttonisOn = true;
+        alert("Uploading Fail!");
+      });
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SecondGatewayService } from '../../service';
 
 @Component({
@@ -9,7 +10,13 @@ import { SecondGatewayService } from '../../service';
 export class SecondLoginComponent {
   userList = [];
 
-  constructor(private authService: SecondGatewayService) {
+  constructor(private router: Router, private authService: SecondGatewayService) {
+    this.authService.isAuthenticated().subscribe((success) => {
+      if(success){
+        this.router.navigate(['home']);
+      }
+    });
+
     firebase.database().ref('users/').once('value')
         .then(snapshot => {
           this.userList = snapshot.val();

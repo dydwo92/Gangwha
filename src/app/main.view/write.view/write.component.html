@@ -1,7 +1,7 @@
 <form>
   <input type="text" class="form-control" placeholder="제목" style="border-radius:0px; margin-bottom:10px" [(ngModel)] = "article.title" name="title" required>
   <textarea id="tinymce"></textarea>
-  <input type="submit" class="btn btn-primary" style="border-radius:0px;margin-top:10px" value="등록하기" (click)="SubmitArticle()">
+  <input type="submit" class="btn btn-primary" style="border-radius:0px;margin-top:10px" value="등록하기" (click)="SubmitArticle()" [ngClass]="{disabled: !buttonisOn}">
 </form>
 
 <hr style="margin: 10px 0 10px 0">

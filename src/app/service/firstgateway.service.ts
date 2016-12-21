@@ -1,5 +1,6 @@
 import { Router, CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class FirstGatewayService implements CanActivate {
@@ -11,7 +12,7 @@ export class FirstGatewayService implements CanActivate {
     this.passport = input;
   }
 
-  canActivate(){
+  canActivate(): Observable<boolean> | boolean{
       if(this.passport == false){
         this.router.navigate(['']);
       }
