@@ -9,10 +9,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3" (window:resize)="onResize($event)">
-      <app-menu [mobileMenu]="mobileMenu"></app-menu>
+      <app-menu [mobileMenu]="mobileMenu" [scrollMargin]="scrollMargin"></app-menu>
     </div>
-    <div class="col-sm-9">
+    <div class="col-md-6 col-sm-9">
       <router-outlet></router-outlet>
+    </div>
+    <div class="col-sm-3" *ngIf="!mobileMenu">
+      123
     </div>
   </div>
 </div>

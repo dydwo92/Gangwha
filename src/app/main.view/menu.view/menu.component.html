@@ -1,4 +1,4 @@
-<div *ngIf="!mobileMenu" class="list-group">
+<div *ngIf="!mobileMenu" class="list-group" [ngStyle]="{marginTop: scrollMargin+'px'}">
   <a *ngFor="let menu of MenuList" class="list-group-item" [routerLink]="[menu.link]" style="border-radius: 0px">
     <span class="glyphicon {{ menu.glyphicon }} pull-right" aria-hidden="true"></span>{{ menu.name }}
   </a>

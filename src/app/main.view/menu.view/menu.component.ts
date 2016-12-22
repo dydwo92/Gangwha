@@ -16,6 +16,7 @@ export class Menu {
 })
 export class MenuComponent implements OnInit{
   @Input() mobileMenu: boolean;
+  @Input() scrollMargin: number;
   mobileMenuDisplay: boolean;
 
   constructor(private authService: SecondGatewayService) {}
