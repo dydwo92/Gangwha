@@ -1,7 +1,6 @@
 import {
   Component,
-  Input,
-  OnInit
+  Input
 } from '@angular/core';
 import { SecondGatewayService } from '../../service';
 
@@ -14,16 +13,11 @@ export class Menu {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit{
-  @Input() mobileMenu: boolean;
+export class MenuComponent{
   @Input() scrollMargin: number;
   mobileMenuDisplay: boolean;
 
   constructor(private authService: SecondGatewayService) {}
-
-  ngOnInit(){
-      this.mobileMenu = window.innerWidth < 770 ? true : false;
-  }
 
   Logout(){
     this.authService.logout();

@@ -2,10 +2,10 @@ import { Component, Renderer } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html'
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  mobileMenu: boolean = false;
   mobileMenuDisplay: boolean = false;
   scrollMargin:number = 0;
 
@@ -16,11 +16,6 @@ export class MainComponent {
       }else{
         this.scrollMargin = 0;
       }
-
     });
-  }
-
-  onResize(event){
-    this.mobileMenu = event.target.innerWidth < 770 ? true : false;
   }
 }

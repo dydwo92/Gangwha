@@ -1,3 +1,4 @@
+<!-- loading circle --->
 <div *ngFor="let article of articleList" class="panel panel-default" style="border-radius:0px">
   <div class="panel-body">
     <div class="media">
@@ -13,3 +14,4 @@
     </div>
   </div>
 </div>
+<img *ngIf="!loadingComplete" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">

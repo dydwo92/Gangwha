@@ -58,6 +58,18 @@
 	}
 }
 
+@media(max-width: 768px){
+	.until-sm{
+		display : none;
+	}
+}
+
+@media(min-width: 768px){
+	.small-then-sm{
+		display: none;
+	}
+}
+
 .menuButton:hover{
   background-color: #46b8da;
 }
