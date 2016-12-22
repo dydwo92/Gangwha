@@ -32,6 +32,7 @@ export class MenuComponent implements OnInit{
     new Menu("글 목록", ".", "glyphicon-th-list"),
     new Menu("글쓰기", "write", "glyphicon-pencil"),
     new Menu("사진 업로드", "image-upload", "glyphicon-picture"),
+    new Menu("영상 업로드", "video-upload", "glyphicon-film"),
     new Menu("계정 설정", "setting", "glyphicon-cog")
   ];
 }

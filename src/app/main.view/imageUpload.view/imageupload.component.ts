@@ -38,8 +38,6 @@ export class imageUploadComponent {
             this.article.body += appendStr;
           });
 
-          console.log(this.article.body);
-
           const sendData = {
             uid: this.authService.UserProfile['uid'],
             title: this.article.title,
@@ -85,8 +83,7 @@ export class imageUploadComponent {
                   if(this.finishedItem == this.file_lists.length){
                     this.finishChecker.next(true);
                   }
-              }
-          );
+              });
       }
   }
 

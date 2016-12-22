@@ -8,6 +8,7 @@ import { DetailComponent } from './detail.view/detail.component';
 import { MenuComponent } from './menu.view/menu.component';
 import { WriteComponent } from './write.view/write.component';
 import { imageUploadComponent } from './imageUpload.view/imageupload.component';
+import { videoUploadComponent } from './videoUpload.view/videoupload.component';
 import { SettingComponent } from './setting.view/setting.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SettingComponent } from './setting.view/setting.component';
     MenuComponent,
     WriteComponent,
     imageUploadComponent,
+    videoUploadComponent,
     SettingComponent
   ],
   imports: [
