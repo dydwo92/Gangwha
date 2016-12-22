@@ -7,11 +7,20 @@
       </div>
       <div class="media-body">
         <h3 class="media-heading">{{ article.title }}</h3>
-          {{ userReference[article.uid].displayName }} | 시간
+          {{ userReference[article.uid].displayName }}
+          <span class="label label-default">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{ article.date }}
+          </span>
       </div>
       <hr style="margin-top:10px;margin-bottom:10px">
       <div [innerHTML] = "article.body"></div>
     </div>
   </div>
 </div>
+<button *ngIf="loadingComplete" type="button"
+        class="btn btn-default btn-lg btn-block"
+        style="border-radius:0px;"
+        (click)="loadArticle()">
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="line-height: 22.8px;"></span>
+</button>
 <img *ngIf="!loadingComplete" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">

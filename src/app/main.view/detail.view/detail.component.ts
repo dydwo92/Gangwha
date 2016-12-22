@@ -33,7 +33,11 @@ export class DetailComponent{
           });
         });
 
-    this.articleRef = this.af.database.list('articles/').subscribe(
+    this.articleRef = this.af.database.list('articles/', {
+        query: {
+          
+        }
+      }).subscribe(
           (snapshot) => {
           this.articleList = snapshot;
           this.loadingChecker.next(true);
@@ -42,6 +46,10 @@ export class DetailComponent{
           (err) => {
             console.log(err);
         });
+
+  }
+
+  loadArticle(){
 
   }
 

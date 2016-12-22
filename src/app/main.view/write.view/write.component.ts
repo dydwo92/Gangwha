@@ -53,10 +53,13 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
   SubmitArticle(){
     this.buttonisOn = false;
     this.article.body = this.editor.getContent();
+    let date = new Date();
     const sendData = {
       uid: this.authService.UserProfile['uid'],
       title : this.article.title,
-      body : this.article.body
+      body : this.article.body,
+      startedAt : -Date.now(),
+      date : date.getFullYear() +'/' + (date.getMonth()+1) + '/' + date.getDate()
     };
     this.af.database.list('/articles').push(sendData)
         .then(()=>{
