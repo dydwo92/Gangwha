@@ -10,14 +10,16 @@ export class SecondGatewayService implements CanActivateChild {
     constructor(private router: Router, private af: AngularFire){
       this.UserProfile['isLoggedIn'] = false;
       af.auth.subscribe((auth)=>{
-        this.UserProfile['uid'] = auth.uid;
-        af.database.list('/users/'+auth.uid).subscribe((snapshot)=>{
-          snapshot.forEach(snapshot =>{
-            this.UserProfile[snapshot.$key] = snapshot.$value;
+        if(auth){
+          this.UserProfile['uid'] = auth.uid;
+          af.database.list('/users/'+auth.uid).subscribe((snapshot)=>{
+            snapshot.forEach(snapshot =>{
+              this.UserProfile[snapshot.$key] = snapshot.$value;
+            });
+            this.UserProfile['isLoggedIn'] = true;
+            this.getProfile.next(this.UserProfile);
           });
-          this.UserProfile['isLoggedIn'] = true;
-          this.getProfile.next(this.UserProfile);
-        });
+        }
       });
     }
 

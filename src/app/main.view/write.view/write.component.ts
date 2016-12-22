@@ -21,7 +21,7 @@ export class Article{
 })
 export class WriteComponent implements OnDestroy, AfterViewInit{
   editor;
-  article: Article = new Article("Title","");
+  article: Article = new Article("","");
   buttonisOn: boolean = true;
 
   @ViewChild('previewArticle') previewArticle: ElementRef;

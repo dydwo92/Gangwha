@@ -16,15 +16,20 @@ export class DetailComponent{
   constructor(private af: AngularFire, private sanitizer: DomSanitizer){
     this.af.database.list('users/')
         .subscribe((snapshot) => {
-          snapshot.forEach((snapshot) => {
+          snapshot.forEach(
+            (snapshot) => {
             this.userReference[snapshot.$key] = {displayName: snapshot.displayName, photoURL: snapshot.photoURL};
           });
         });
 
     this.af.database.list('articles/')
-        .subscribe((snapshot) => {
+        .subscribe(
+          (snapshot) => {
           this.articleList = snapshot;
-        });
+        },
+          (err) => {
+            console.log(err);
+          });
   }
 
 }
