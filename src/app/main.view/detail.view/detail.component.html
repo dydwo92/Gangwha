@@ -9,7 +9,7 @@
           {{ userReference[article.uid].displayName }} | 시간
       </div>
       <hr style="margin-top:10px;margin-bottom:10px">
-      <div [innerHTML] = "sanitizeHTML(article.body)"></div>
+      <div [innerHTML] = "article.body"></div>
     </div>
   </div>
 </div>

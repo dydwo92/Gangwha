@@ -9,11 +9,15 @@ import { AngularFire } from 'angularfire2';
 export class DetailComponent{
   articleList: any=[];
   userReference: any = [];
+  articleRef: any;
+  userRef: any;
+
   sanitizeHTML(html: string) :SafeHtml{
       return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
   constructor(private af: AngularFire, private sanitizer: DomSanitizer){
+
     this.af.database.list('users/')
         .subscribe((snapshot) => {
           snapshot.forEach(
@@ -22,14 +26,15 @@ export class DetailComponent{
           });
         });
 
-    this.af.database.list('articles/')
-        .subscribe(
+    this.articleRef = this.af.database.list('articles/').subscribe(
           (snapshot) => {
           this.articleList = snapshot;
+          this.articleRef.unsubscribe();
         },
           (err) => {
             console.log(err);
-          });
+        });
+
   }
 
 }
