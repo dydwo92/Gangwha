@@ -37,11 +37,13 @@ export class imageUploadComponent {
             const appendStr = '<img src="'+url+'" width="100%" style="margin-bottom : 5px">';
             this.article.body += appendStr;
           });
-
+          let date = new Date();
           const sendData = {
             uid: this.authService.UserProfile['uid'],
             title: this.article.title,
-            body: this.article.body
+            body: this.article.body,
+            startedAt : -Date.now(),
+            date : date.getFullYear() +'/' + (date.getMonth()+1) + '/' + date.getDate()
           };
           this.af.database.list('/articles').push(sendData)
               .then(()=>{

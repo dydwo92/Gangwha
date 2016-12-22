@@ -32,11 +32,13 @@ export class videoUploadComponent {
         // Finished upload
         this.article.body = '<video src="'+ this.downloadURL
                           +'" width="100%" controls></video>';
-
+        let date = new Date();
         const sendData = {
           uid: this.authService.UserProfile['uid'],
           title: this.article.title,
-          body: this.article.body
+          body: this.article.body,
+          startedAt : -Date.now(),
+          date : date.getFullYear() +'/' + (date.getMonth()+1) + '/' + date.getDate()
         };
         this.af.database.list('/articles').push(sendData)
             .then(() => {

@@ -17,10 +17,4 @@
     </div>
   </div>
 </div>
-<button *ngIf="loadingComplete" type="button"
-        class="btn btn-default btn-lg btn-block"
-        style="border-radius:0px;"
-        (click)="loadArticle()">
-        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="line-height: 22.8px;"></span>
-</button>
 <img *ngIf="!loadingComplete" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">
