@@ -10,7 +10,7 @@ import { MainModule } from './main.view/main.module';
 import {
   FirstGatewayService,
   SecondGatewayService,
-  ArticleService
+  ArticleService,
 } from './service';
 
 import { APP_ROUTING } from './app.routing';

@@ -14,10 +14,17 @@
       <hr style="margin-top:10px;margin-bottom:10px">
       <div #articleBody></div>
       <div *ngFor="let tag of article.tags" style="display: inline-block">
-        <a [routerLink]="['.','search',tag]">
+        <a [routerLink]="['/home','search',tag]">
           <span class="label label-default">{{ tag }}</span>
         </a>
       </div>
+
+      <a [routerLink]="['/home','detail', article.id]">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border-radius:0px;margin-top:5px">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 자세히 보기 (0)
+        </button>
+      </a>
+
     </div>
   </div>
 </div>

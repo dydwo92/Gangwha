@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Rx';
 export class videoUploadComponent {
   progressValue:number = 0;
   buttonisOn:boolean = true;
-  article: Article;
+  article: Article = new Article("","","",[]);
   videoFile: File;
 
   uploadTask: any;
@@ -21,7 +21,6 @@ export class videoUploadComponent {
   constructor(private authService: SecondGatewayService,
               private router: Router,
               private articleService: ArticleService){
-    this.article = new Article("","",[]);
     this.finishChecker = new Subject<boolean>();
     this.finishChecker.subscribe(value =>{
       if(value){

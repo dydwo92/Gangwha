@@ -1,0 +1,11 @@
+<app-post *ngIf="loadingComplete" [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
+
+<!-- Control part!!!!!!!!!! -->
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body">
+    Controls!!!!!!!!!!
+  </div>
+</div>
+
+
+<img *ngIf="!loadingComplete" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">

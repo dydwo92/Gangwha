@@ -13,6 +13,7 @@ import { SettingComponent } from './setting.view/setting.component';
 import { PostComponent } from './post.view/post.component';
 import { SearchComponent } from './search.view/search.component';
 import { SearchViewComponent } from './search.view/searchview.component';
+import { PostDetailComponent } from './post.view/postdetail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchViewComponent } from './search.view/searchview.component';
     SettingComponent,
     PostComponent,
     SearchComponent,
-    SearchViewComponent
+    SearchViewComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,

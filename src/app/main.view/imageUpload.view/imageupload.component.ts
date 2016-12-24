@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Rx';
   templateUrl: './imageupload.component.html'
 })
 export class imageUploadComponent {
-  article: Article;
+  article: Article = new Article("","","",[]);
   buttonisOn: boolean = true;
   showArticle: boolean = false;
   isLoading: boolean = false;
@@ -30,7 +30,7 @@ export class imageUploadComponent {
         if(value){
           // Finished upload
           this.downloadURLs.forEach((url) => {
-            const appendStr = '<img src="'+url+'" width="100%" style="margin-bottom : 5px">';
+            const appendStr = '<a href="'+url+'" target="_blank"><img src="'+url+'" width="100%" style="margin-bottom : 5px"></a>';
             this.article.body += appendStr;
           });
           let uploadTask = this.articleservice.Register(this.article);
@@ -42,7 +42,6 @@ export class imageUploadComponent {
           });
         }
       });
-      this.article = new Article("","",[]);
   }
 
   tagChange(input: any){

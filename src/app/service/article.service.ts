@@ -4,7 +4,7 @@ import { AngularFire } from 'angularfire2';
 import { Subject } from 'rxjs/Rx';
 
 export class Article{
-  constructor(public title:string, public body:string, public tags: string[]) {};
+  constructor(public id:string, public title:string, public body:string, public tags: string[]) {};
 }
 
 @Injectable()
@@ -77,22 +77,6 @@ export class ArticleService{
         return uploadChecker;
   }
 
-  Search(keyword: string){
-    let uploadChecker = new Subject();
-    let articleList:Article[] = [];
-    let now = Date.now();
-    let articleRef = firebase.database().ref('articles');
-    articleRef.orderByChild('_'+keyword).startAt(-now).on('value', snapshot=>{
-      snapshot.forEach(child=>{
-        articleList.push(child.val());
-        return false;
-      });
-      uploadChecker.next(articleList);
-    });
-
-    return uploadChecker;
-  }
-
   LoadArticles(keyword: string, startTime: number, n_items: number){
     let loadChecker = new Subject<any[]>();
     let articleList:Article[] = [];
@@ -106,7 +90,9 @@ export class ArticleService{
     articleRef.startAt(startTime).limitToFirst(n_items).once('value')
     .then(snapshot => {
       snapshot.forEach(child=>{
-        articleList.push(child.val());
+        let item = child.val();
+        item['id'] = child.key;
+        articleList.push(item);
         return false;
       });
       loadChecker.next(articleList);
