@@ -1,5 +1,10 @@
 <div class="panel panel-default" style="border-radius:0px;margin:0px">
   <div class="panel-body">
+    <h1 style="margin:-5px 0px 5px 0px"><small>
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Account
+    </small></h1>
+    <hr style="margin:0px 0px 5px 0px">
+
     <form #f="ngForm" (ngSubmit)="OnSubmit(f.value)">
       <label for="nickname">NickName</label>
       <input type="text" class="form-control" style="border-radius:0px; margin-bottom:5px" placeholder="Nickname.." id="nickname" [(ngModel)]="nickname" name="nickname" required>

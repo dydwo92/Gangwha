@@ -7,7 +7,11 @@ import { AppComponent } from './app.component';
 import { EntranceModule } from './entrance.view/entrance.module';
 import { MainModule } from './main.view/main.module';
 
-import { FirstGatewayService, SecondGatewayService } from './service';
+import {
+  FirstGatewayService,
+  SecondGatewayService,
+  ArticleService
+} from './service';
 
 import { APP_ROUTING } from './app.routing';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -39,7 +43,8 @@ export const firebaseAuthConfig = {
   ],
   providers: [
     FirstGatewayService,
-    SecondGatewayService
+    SecondGatewayService,
+    ArticleService
   ],
   bootstrap: [ AppComponent ]
 })

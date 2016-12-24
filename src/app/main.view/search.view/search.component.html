@@ -1,0 +1,14 @@
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body">
+    <h1 style="margin:-5px 0px 5px 0px"><small>
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+    </small></h1>
+    <hr style="margin:0px 0px 5px 0px">
+
+    <div *ngFor="let tag of articleService.tagList">
+      <a [routerLink]="['.',tag['key']]">
+        {{ tag['key'] }} [{{ tag['numChild'] }}]
+      </a>
+    </div>
+  </div>
+</div>

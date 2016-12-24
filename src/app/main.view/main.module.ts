@@ -10,6 +10,9 @@ import { WriteComponent } from './write.view/write.component';
 import { imageUploadComponent } from './imageUpload.view/imageupload.component';
 import { videoUploadComponent } from './videoUpload.view/videoupload.component';
 import { SettingComponent } from './setting.view/setting.component';
+import { PostComponent } from './post.view/post.component';
+import { SearchComponent } from './search.view/search.component';
+import { SearchViewComponent } from './search.view/searchview.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { SettingComponent } from './setting.view/setting.component';
     WriteComponent,
     imageUploadComponent,
     videoUploadComponent,
-    SettingComponent
+    SettingComponent,
+    PostComponent,
+    SearchComponent,
+    SearchViewComponent
   ],
   imports: [
     BrowserModule,

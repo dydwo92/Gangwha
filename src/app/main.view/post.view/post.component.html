@@ -1,0 +1,23 @@
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ userReference.photoURL }}" width="50px" class="img-circle">
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">{{ article.title }}</h3>
+          {{ userReference.displayName }}
+          <span class="label label-default">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{ article.date }}
+          </span>
+      </div>
+      <hr style="margin-top:10px;margin-bottom:10px">
+      <div #articleBody></div>
+      <div *ngFor="let tag of article.tags" style="display: inline-block">
+        <a [routerLink]="['.','search',tag]">
+          <span class="label label-default">{{ tag }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

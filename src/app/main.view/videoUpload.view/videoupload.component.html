@@ -1,5 +1,10 @@
 <div class="panel panel-default" style="border-radius:0px;margin:0px">
   <div class="panel-body">
+    <h1 style="margin:-5px 0px 5px 0px"><small>
+      <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Video upload
+    </small></h1>
+    <hr style="margin:0px 0px 5px 0px">
+
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
       <input type="text" class="form-control"
              placeholder="제목"
@@ -11,6 +16,10 @@
              style="display:inline-block;margin-top:2.4px"
              #input (change)="onChange(input)"
              required>
+      <input type="text" class="form-control text-input"
+             style="margin:10px 0px 10px 0px;border-radius:0px" #tags  required
+             placeholder="태그: ','로 구분하여 작성"
+             (keyup)="tagChange(tags.value)">
       <input type="submit"
              class="btn btn-primary pull-right"
              style="border-radius:0px;"

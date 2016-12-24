@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SecondGatewayService } from '../../service';
+import { SecondGatewayService, ArticleService, Article } from '../../service';
 import { Subject } from 'rxjs/Rx';
-import { AngularFire } from 'angularfire2';
 
-export class Article{
-  constructor(public title:string, public body:string) {};
-}
 
 @Component({
   selector: 'app-videoupload',
@@ -24,31 +20,27 @@ export class videoUploadComponent {
 
   constructor(private authService: SecondGatewayService,
               private router: Router,
-              private af: AngularFire){
-    this.article = new Article("","");
+              private articleService: ArticleService){
+    this.article = new Article("","",[]);
     this.finishChecker = new Subject<boolean>();
     this.finishChecker.subscribe(value =>{
       if(value){
         // Finished upload
         this.article.body = '<video src="'+ this.downloadURL
                           +'" width="100%" controls></video>';
-        let date = new Date();
-        const sendData = {
-          uid: this.authService.UserProfile['uid'],
-          title: this.article.title,
-          body: this.article.body,
-          startedAt : -Date.now(),
-          date : date.getFullYear() +'/' + (date.getMonth()+1) + '/' + date.getDate()
-        };
-        this.af.database.list('/articles').push(sendData)
-            .then(() => {
-              this.router.navigate(['home']);
-            })
-            .catch((err) => {
-              alert("Uploading Fail!");
-            });
+        let uploadTask = this.articleService.Register(this.article);
+        uploadTask.subscribe((value)=>{
+          if(value){
+            uploadTask.unsubscribe();
+            this.router.navigate(['home']);
+          }
+        });
       }
     });
+  }
+
+  tagChange(input: any){
+    this.article.tags = input.replace(/\s/g, '').split(',');
   }
 
   onChange(input: any){

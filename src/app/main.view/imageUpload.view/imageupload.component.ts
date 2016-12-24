@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SecondGatewayService } from '../../service';
+import { SecondGatewayService, ArticleService, Article } from '../../service';
 import { Subject } from 'rxjs/Rx';
-import { AngularFire } from 'angularfire2';
-
-export class Article{
-  constructor(public title:string, public body:string) {};
-}
 
 @Component({
   selector: 'app-imageupload',
@@ -26,9 +21,10 @@ export class imageUploadComponent {
   finishChecker: Subject<boolean>;
   finishedItem: number = 0;
 
-  constructor(private authService: SecondGatewayService,
-              private router: Router,
-              private af: AngularFire){
+  constructor(
+    private authService: SecondGatewayService,
+    private router: Router,
+    private articleservice: ArticleService){
       this.finishChecker = new Subject<boolean>();
       this.finishChecker.subscribe(value => {
         if(value){
@@ -37,24 +33,20 @@ export class imageUploadComponent {
             const appendStr = '<img src="'+url+'" width="100%" style="margin-bottom : 5px">';
             this.article.body += appendStr;
           });
-          let date = new Date();
-          const sendData = {
-            uid: this.authService.UserProfile['uid'],
-            title: this.article.title,
-            body: this.article.body,
-            startedAt : -Date.now(),
-            date : date.getFullYear() +'/' + (date.getMonth()+1) + '/' + date.getDate()
-          };
-          this.af.database.list('/articles').push(sendData)
-              .then(()=>{
-                this.router.navigate(['home']);
-              })
-              .catch((err)=>{
-                alert("Uploading Fail!");
-              });
+          let uploadTask = this.articleservice.Register(this.article);
+          uploadTask.subscribe((value)=>{
+            if(value){
+              uploadTask.unsubscribe();
+              this.router.navigate(['home']);
+            }
+          });
         }
       });
-      this.article = new Article("","");
+      this.article = new Article("","",[]);
+  }
+
+  tagChange(input: any){
+    this.article.tags = input.replace(/\s/g, '').split(',');
   }
 
   sum(array: number[]) {

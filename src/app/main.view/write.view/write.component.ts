@@ -8,25 +8,24 @@ import {
 import { Router } from '@angular/router';
 
 import { NgForm } from '@angular/forms';
-import { AngularFire } from 'angularfire2';
-import { SecondGatewayService } from '../../service';
-
-export class Article{
-  constructor(public title:string, public body:string) {};
-}
+import { SecondGatewayService, ArticleService, Article } from '../../service';
 
 @Component({
   selector: 'app-wrtie',
-  templateUrl : './write.component.html'
+  templateUrl : './write.component.html',
+  styleUrls: ['./write.component.css']
 })
 export class WriteComponent implements OnDestroy, AfterViewInit{
   editor;
-  article: Article = new Article("","");
+  article: Article = new Article("","",[]);
   buttonisOn: boolean = true;
 
   @ViewChild('previewArticle') previewArticle: ElementRef;
 
-  constructor(private router: Router, private af: AngularFire, private authService: SecondGatewayService){}
+  constructor(
+    private router: Router,
+    private authService: SecondGatewayService,
+    private articleService: ArticleService){}
 
   ngAfterViewInit(){
     tinymce.init({
@@ -50,24 +49,19 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
     tinymce.remove(this.editor);
   }
 
+  tagChange(input: any){
+    this.article.tags = input.replace(/\s/g, '').split(',');
+  }
+
   SubmitArticle(){
     this.buttonisOn = false;
     this.article.body = this.editor.getContent();
-    let date = new Date();
-    const sendData = {
-      uid: this.authService.UserProfile['uid'],
-      title : this.article.title,
-      body : this.article.body,
-      startedAt : -Date.now(),
-      date : date.getFullYear() +'/' + (date.getMonth()+1) + '/' + date.getDate()
-    };
-    this.af.database.list('/articles').push(sendData)
-        .then(()=>{
-          this.router.navigate(['home']);
-        })
-        .catch(
-        (err) => {
-          alert("Uploading Fail!");
+    let uploadTask = this.articleService.Register(this.article);
+    uploadTask.subscribe((value)=>{
+          if(value){
+            uploadTask.unsubscribe();
+            this.router.navigate(['home']);
+          }
         });
   }
 }
