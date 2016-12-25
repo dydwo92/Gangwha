@@ -1,6 +1,6 @@
 <div class="panel panel-default" style="border-radius:0px">
-  <div class="panel-body">
-    <div class="media">
+  <div class="panel-body" [ngStyle]="{'background-color': article.notification ? '#ff9f9f' : 'white'}">
+    <div class="media" style="background-color:white">
       <div class="media-left">
         <img src="{{ userReference.photoURL }}" width="50px" class="img-circle">
       </div>
@@ -15,7 +15,7 @@
       <div #articleBody></div>
       <div *ngFor="let tag of article.tags" style="display: inline-block">
         <a [routerLink]="['/home','search',tag]">
-          <span class="label label-default">{{ tag }}</span>
+          <span class="label label-default" style="margin:0px 1px 0px 1px">{{ tag }}</span>
         </a>
       </div>
 

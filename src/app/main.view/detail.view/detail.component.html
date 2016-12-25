@@ -1,4 +1,8 @@
 <!-- loading circle --->
+<div *ngFor="let article of notificationList">
+  <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
+</div>
+
 <div *ngFor="let article of articleList">
   <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
 </div>

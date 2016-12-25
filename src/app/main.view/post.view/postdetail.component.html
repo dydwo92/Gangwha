@@ -16,12 +16,19 @@
               class="btn btn-sm btn-default"
               (click)="removeArticle()">삭제</button>
       <button type="button"
+              *ngIf="!article.notification"
               name="button"
+              (click)="registerNotification(true)"
               class="btn btn-sm btn-default">공지</button>
       <button type="button"
+              *ngIf="article.notification"
               name="button"
-              class="btn btn-sm btn-default"
-              (click)="sendNotification()">알림</button>
+              (click)="registerNotification(false)"
+              class="btn btn-sm btn-default">공지 취소</button>
+      <button type="button"
+              name="button"
+              class="btn btn-sm btn-warning"
+              (click)="sendNotification()">카톡 알림</button>
     </div>
 
     <!-- commnets -->

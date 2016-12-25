@@ -8,12 +8,24 @@ import { ArticleService } from '../../service';
 })
 export class DetailComponent {
   articleList: any=[];
+  notificationList: any = [];
   lastStamp:number = 0;
   noMoreArticle:boolean = false;
   loadingComplete:boolean = false;
 
   constructor(private articleService: ArticleService,
               private renderer: Renderer){
+
+    // Get notification
+    firebase.database().ref('articles').orderByChild('notification').equalTo(true)
+        .once('value').then(snapshot =>{
+          if(snapshot.exists()){
+            let data = snapshot.val();
+            Object.keys(data).forEach(key=>{
+              this.notificationList.push(data[key]);
+            });
+          }
+        });
 
     let firstLoadTask = this.articleService.LoadArticles("", -Date.now(), 5);
     firstLoadTask.subscribe((result) =>{
