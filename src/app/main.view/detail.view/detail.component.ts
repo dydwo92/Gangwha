@@ -22,6 +22,13 @@ export class DetailComponent {
           if(snapshot.exists()){
             let data = snapshot.val();
             Object.keys(data).forEach(key=>{
+              let pushData = data[key];
+              if(pushData.comments){
+                pushData['comment_length'] = Object.keys(pushData.comments).length;
+              }else{
+                pushData['comment_length'] = 0;
+              }
+              pushData['id'] = key;
               this.notificationList.push(data[key]);
             });
           }
