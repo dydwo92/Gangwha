@@ -14,6 +14,7 @@ import { PostComponent } from './post.view/post.component';
 import { SearchComponent } from './search.view/search.component';
 import { SearchViewComponent } from './search.view/searchview.component';
 import { PostDetailComponent } from './post.view/postdetail.component';
+import { EditComponent } from './write.view/edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PostDetailComponent } from './post.view/postdetail.component';
     PostComponent,
     SearchComponent,
     SearchViewComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

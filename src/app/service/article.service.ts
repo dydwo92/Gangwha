@@ -92,6 +92,12 @@ export class ArticleService{
       snapshot.forEach(child=>{
         let item = child.val();
         item['id'] = child.key;
+        if(item.comments){
+          item['comment_length'] = Object.keys(item.comments).length;
+        }else{
+          item['comment_length'] = 0;
+        }
+
         articleList.push(item);
         return false;
       });

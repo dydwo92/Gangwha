@@ -1,9 +1,62 @@
 <app-post *ngIf="loadingComplete" [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
 
 <!-- Control part!!!!!!!!!! -->
-<div class="panel panel-default" style="border-radius:0px">
+<div *ngIf="loadingComplete" class="panel panel-default" style="border-radius:0px">
   <div class="panel-body">
-    Controls!!!!!!!!!!
+
+    <div class="btn-group" style="margin-bottom:5px">
+      <button *ngIf="article.uid == authService.UserProfile.uid"
+              type="button"
+              [routerLink]="['/home','edit',article.id]"
+              name="button"
+              class="btn btn-sm btn-default">수정</button>
+      <button *ngIf="article.uid == authService.UserProfile.uid"
+              type="button"
+              name="button"
+              class="btn btn-sm btn-default"
+              (click)="removeArticle()">삭제</button>
+      <button type="button"
+              name="button"
+              class="btn btn-sm btn-default">공지</button>
+      <button type="button"
+              name="button"
+              class="btn btn-sm btn-default"
+              (click)="sendNotification()">알림</button>
+    </div>
+
+    <!-- commnets -->
+    <div *ngFor="let commnet of comments;let i=index">
+      <hr style="margin:5px 0px 5px 0px">
+      <div class="media" style="margin:0px">
+        <div class="media-left">
+          <img src="{{ articleService.userReference[comments[i].uid].photoURL }}" width="30px" class="img-circle">
+        </div>
+        <div class="media-body">
+          <p class="media-heading" style="font-weight:bold;font-size:10px;margin:0px;color:#777">
+            {{ articleService.userReference[comments[i].uid].displayName }}
+            <button type="button"
+                    class="close"
+                    aria-label="Close"
+                    *ngIf="comments[i].uid == authService.UserProfile.uid"
+                    (click)="removeComment(comments[i].key)"><span aria-hidden="true">&times;</span></button>
+            <span class="pull-right">{{ comments[i].date }}</span>
+          </p>
+          <span style="font-size:13px">{{ comments[i].comment }}</span>
+        </div>
+      </div>
+    </div>
+
+    <form #f="ngForm" (ngSubmit)="OnSubmit(f.value)">
+      <div class="form-group" style="margin:5px 0px 0px 0px">
+        <textarea class="form-control"
+                  required
+                  placeholder="Comment..."
+                  style="margin-bottom:5px;border-radius:0px"
+                  ngModel name="comment"></textarea>
+        <button type="submit" class="btn btn-primary">댓글달기</button>
+      </div>
+    </form>
+
   </div>
 </div>
 

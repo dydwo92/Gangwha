@@ -17,6 +17,7 @@ import { SecondGatewayService, ArticleService, Article } from '../../service';
 })
 export class WriteComponent implements OnDestroy, AfterViewInit{
   editor;
+  tagString: string = "";
   article: Article = new Article("","","",[]);
   buttonisOn: boolean = true;
 

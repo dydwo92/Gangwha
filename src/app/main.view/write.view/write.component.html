@@ -10,6 +10,8 @@
       <textarea id="tinymce"></textarea>
       <input type="text" class="form-control text-input"
              style="margin-top:10px" #tags  required
+             [(ngModel)] = "tagString"
+             name="tags"
              placeholder="태그: ','로 구분하여 작성"
              (keyup)="tagChange(tags.value)">
       <input type="submit" class="btn btn-primary"

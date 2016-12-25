@@ -5,7 +5,7 @@
         <img src="{{ userReference.photoURL }}" width="50px" class="img-circle">
       </div>
       <div class="media-body">
-        <h3 class="media-heading">{{ article.title }}</h3>
+        <h4 class="media-heading">{{ article.title }}</h4>
           {{ userReference.displayName }}
           <span class="label label-default">
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{ article.date }}
@@ -21,7 +21,7 @@
 
       <a [routerLink]="['/home','detail', article.id]">
         <button type="button" class="btn btn-default btn-sm btn-block" style="border-radius:0px;margin-top:5px">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 자세히 보기 (0)
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 자세히 보기 (<b>{{ article.comment_length }}</b>)
         </button>
       </a>
 

@@ -7,6 +7,7 @@ import { SettingComponent} from './setting.view/setting.component';
 import { SearchComponent } from './search.view/search.component';
 import { SearchViewComponent } from './search.view/searchview.component';
 import { PostDetailComponent } from './post.view/postdetail.component';
+import { EditComponent } from './write.view/edit.component';
 
 export const MAIN_ROUTES: Routes = [
   { path: '', component : DetailComponent, pathMatch : 'full' },
@@ -16,5 +17,6 @@ export const MAIN_ROUTES: Routes = [
   { path: 'setting', component: SettingComponent },
   { path: 'search', component: SearchComponent, pathMatch: 'full' },
   { path: 'search/:keyword', component: SearchViewComponent },
-  { path: 'detail/:id', component: PostDetailComponent}
+  { path: 'detail/:id', component: PostDetailComponent},
+  { path: 'edit/:id', component: EditComponent}
 ];
