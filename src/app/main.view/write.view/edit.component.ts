@@ -21,6 +21,7 @@ export class EditComponent implements AfterViewInit, OnDestroy{
   id:string;
   item: any;
   Checker:Subject<boolean>;
+  initialTags: string[] = [];
   loadChecker:Subject<boolean>;
   count:number = 0;
   startedAt:number = 0;
@@ -58,6 +59,7 @@ export class EditComponent implements AfterViewInit, OnDestroy{
           // 3. Load..
           Object.keys(this.item).forEach(key=>{
             if(key.charAt(0) == '_'){
+              this.initialTags.push(key.substring(1));
               this.article.tags.push(key.substring(1));
             }
           });
@@ -104,6 +106,13 @@ export class EditComponent implements AfterViewInit, OnDestroy{
     this.buttonisOn = false;
     this.article.body = this.editor.getContent();
 
+    // 0. remove some tags
+    this.initialTags.forEach(tag=>{
+      if(this.article.tags.indexOf(tag) == -1){
+        this.af.database.list('articles/'+this.id+'/_'+tag).remove();
+      }
+    });
+    
     // 1. Update article
     let sendData = {
       body: this.article.body,

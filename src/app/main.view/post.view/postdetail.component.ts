@@ -79,7 +79,7 @@ export class PostDetailComponent{
   }
 
   sendNotification(){
-    const authDomain = "gangwha-e51e5.firebaseapp.com";
+    const authDomain = "gangwha.org";
     Kakao.Link.sendTalkLink({
       label: '[강화봇] ' + this.article['title'] + ' - ' + this.articleService.userReference[this.article['uid']].displayName,
       webButton: {

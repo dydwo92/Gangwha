@@ -3,7 +3,15 @@
   <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
 </div>
 
+<button type="button"
+        *ngIf="!loadingStart"
+        class="btn btn-default btn-lg btn-block"
+        style="border-radius:0px;margin:5px 0px 5px 0px"
+        (click)="startLoading()">
+        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 펼치기
+      </button>
+
 <div *ngFor="let article of articleList">
   <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
 </div>
-<img *ngIf="!loadingComplete" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">
+<img *ngIf="!loadingComplete && loadingStart" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">
