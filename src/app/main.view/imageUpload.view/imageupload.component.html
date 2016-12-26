@@ -1,1 +1,65 @@
-123
+<div class="panel panel-default" style="border-radius:0px;margin:0px">
+  <div class="panel-body">
+    <h1 style="margin:-5px 0px 5px 0px"><small>
+      <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Photo upload
+    </small></h1>
+    <hr style="margin:0px 0px 5px 0px">
+
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      <input type="text" class="form-control"
+             placeholder="제목"
+             style="border-radius:0px; margin-bottom:10px"
+             [(ngModel)] = "article.title"
+             name="title"
+             required>
+      <input type="file" accept="image/*"
+             multiple style="display:inline-block;margin-top:2.4px"
+             #input (change)="onChange(input)"
+             required>
+      <input type="text" class="form-control text-input"
+             style="margin:10px 0px 10px 0px;border-radius:0px" #tags  required
+             placeholder="태그: ','로 구분하여 작성"
+             (keyup)="tagChange(tags.value)">
+      <input type="submit"
+             class="btn btn-primary"
+             style="border-radius:0px;"
+             value="등록하기"
+             *ngIf="!isLoading && buttonisOn && authService.UserProfile['isLoggedIn']">
+    </form>
+  </div>
+</div>
+
+<div *ngIf="!buttonisOn" class="progress" style="margin:10px 0px 0px 0px">
+  <div class="progress-bar progress-bar-danger progress-bar-striped active"
+       role="progressbar" [attr.aria-valuenow]="sum(progressValue)"
+       aria-valuemin="0" aria-valuemax="100"
+       [ngStyle]="{width: sum(progressValue)+'%'}">
+       {{ sum(progressValue) | number : '1.2-2' }}%
+  </div>
+</div>
+
+<hr style="margin: 10px 0 10px 0">
+
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ authService.UserProfile['photoURL'] }}" width="50px" class="img-circle">
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">{{ article.title }}</h3>
+          {{ authService.UserProfile['displayName'] }}
+      </div>
+      <hr style="margin-top:10px;margin-bottom:10px">
+      <p *ngIf="isLoading">Loading...</p>
+      <div *ngIf="showArticle">
+        <div *ngFor="let file_src of file_srcs">
+          <img [attr.src]='file_src' width="100%" style="margin-bottom:5px">
+        </div>
+      </div>
+      <div *ngFor="let tag of article.tags" style="display: inline-block">
+        <span class="label label-primary">{{ tag }}</span>
+      </div>
+    </div>
+  </div>
+<div>

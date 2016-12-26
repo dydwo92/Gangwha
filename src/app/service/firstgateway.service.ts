@@ -16,7 +16,7 @@ export class FirstGatewayService implements CanActivate {
       if(this.passport == false){
         this.router.navigate(['']);
       }
-
+      
       return this.passport;
   }
 }

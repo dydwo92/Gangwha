@@ -11,7 +11,7 @@ import { SecondGatewayService } from './service';
 
 const APP_ROUTES: Routes = [
   {path: '', component: EntranceComponent, children: ENTRANCE_ROUTES},
-  {path: 'home', component: MainComponent, children: MAIN_ROUTES, canActivate: [SecondGatewayService] },
+  {path: 'home', component: MainComponent, children: MAIN_ROUTES, canActivateChild: [SecondGatewayService] },
   {path: '**', redirectTo: ''}
 ];
 

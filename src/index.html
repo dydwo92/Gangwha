@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Gangwha</title>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,18 +12,15 @@
   <link rel="stylesheet" href="public/css/bootstrap.min.css">
 </head>
 <body>
-  <app-root>Loading...</app-root>
-  <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyBh65kYyz-9N4dDnbWIpZK9itlZt3k3ljY",
-      authDomain: "gangwha-e51e5.firebaseapp.com",
-      databaseURL: "https://gangwha-e51e5.firebaseio.com",
-      storageBucket: "gangwha-e51e5.appspot.com",
-      messagingSenderId: "876832084726"
-    };
-    firebase.initializeApp(config);
-  </script>  
+  <app-root style="background-color:white">
+    <div style="height:100vh; text-align: center; margin: 1em 0;">
+      <span class="helper" style="display:inline-block;height: 100%;vertical-align:middle;"></span>
+      <img src="/public/img/loadingCircle.gif" width="50px" style="vertical-align: middle;">
+    </div>
+  </app-root>
+
+  <script type="text/javascript">
+    Kakao.init('30ac45fd3e37f5dfa80485633982e798');
+  </script>
 </body>
 </html>

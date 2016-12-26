@@ -8,11 +8,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3" (window:resize)="onResize($event)">
-      <app-menu [mobileMenu]="mobileMenu"></app-menu>
+    <div class="col-sm-3">
+      <app-menu [scrollMargin]="scrollMargin"></app-menu>
     </div>
-    <div class="col-sm-9">
+    <div class="col-md-6 col-sm-9">
       <router-outlet></router-outlet>
+    </div>
+    <div id="right-col" class="col-sm-3 until-md" [ngStyle]="{marginTop: scrollMargin+'px'}">
+
     </div>
   </div>
 </div>

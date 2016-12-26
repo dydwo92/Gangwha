@@ -3,41 +3,17 @@
     height: 100vh;
 }
 
-.centered {
+.outer {
     position: absolute;
     padding: 15px;
-    width:90%;
     background: rgba(255, 255, 255, 0.0);
     border-radius: 0px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.menuButton{
-  width: 16.66%;
-  float: left;
-  padding: 10px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.0);
-}
 
-@media(max-width: 1060px){
-  .menuButton{
-    width: 33.33%;
-  }
-}
-
-@media(max-width: 500px){
-  .menuButton{
-    width: 50%;
-  }
-}
-
-.menuButton:hover{
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.user-thumb{
-  margin: auto;
-  width:90%;
+form > *{
+  margin-bottom: 5px;
+  border-radius:0px
 }

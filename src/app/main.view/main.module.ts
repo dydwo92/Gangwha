@@ -8,6 +8,13 @@ import { DetailComponent } from './detail.view/detail.component';
 import { MenuComponent } from './menu.view/menu.component';
 import { WriteComponent } from './write.view/write.component';
 import { imageUploadComponent } from './imageUpload.view/imageupload.component';
+import { videoUploadComponent } from './videoUpload.view/videoupload.component';
+import { SettingComponent } from './setting.view/setting.component';
+import { PostComponent } from './post.view/post.component';
+import { SearchComponent } from './search.view/search.component';
+import { SearchViewComponent } from './search.view/searchview.component';
+import { PostDetailComponent } from './post.view/postdetail.component';
+import { EditComponent } from './write.view/edit.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +22,14 @@ import { imageUploadComponent } from './imageUpload.view/imageupload.component';
     DetailComponent,
     MenuComponent,
     WriteComponent,
-    imageUploadComponent
+    imageUploadComponent,
+    videoUploadComponent,
+    SettingComponent,
+    PostComponent,
+    SearchComponent,
+    SearchViewComponent,
+    PostDetailComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,17 @@
-<div *ngFor="let article of articleList" class="panel panel-default" style="border-radius:0px">
-  <div class="panel-body">
-    <div class="media">
-      <div class="media-left">
-        <img src="http://lorempixel.com/50/50" width="50px" class="img-circle">
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading">{{ article.title }}</h3>
-          {{ article.name }} | 시간
-      </div>
-      <hr style="margin-top:10px;margin-bottom:10px">
-      <div [innerHTML] = "sanitizeHTML(article.body)"></div>
-    </div>
-  </div>
+<!-- loading circle --->
+<div *ngFor="let article of notificationList">
+  <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
 </div>
+
+<button type="button"
+        *ngIf="!loadingStart"
+        class="btn btn-default btn-lg btn-block"
+        style="border-radius:0px;margin:5px 0px 5px 0px"
+        (click)="startLoading()">
+        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 펼치기
+      </button>
+
+<div *ngFor="let article of articleList">
+  <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
+</div>
+<img *ngIf="!loadingComplete && loadingStart" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">

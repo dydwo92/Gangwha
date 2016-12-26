@@ -1,0 +1,30 @@
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body" [ngStyle]="{'background-color': article.notification ? '#ff9f9f' : 'white'}">
+    <div class="media" style="background-color:white">
+      <div class="media-left">
+        <img src="{{ userReference.photoURL }}" width="50px" class="img-circle">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{ article.title }}</h4>
+          {{ userReference.displayName }}
+          <span class="label label-default">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{ article.date }}
+          </span>
+      </div>
+      <hr style="margin-top:10px;margin-bottom:10px">
+      <div #articleBody></div>
+      <div *ngFor="let tag of article.tags" style="display: inline-block">
+        <a [routerLink]="['/home','search',tag]">
+          <span class="label label-default" style="margin:0px 1px 0px 1px">{{ tag }}</span>
+        </a>
+      </div>
+
+      <a [routerLink]="['/home','detail', article.id]">
+        <button type="button" class="btn btn-default btn-sm btn-block" style="border-radius:0px;margin-top:5px">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 자세히 보기 (<b>{{ article.comment_length }}</b>)
+        </button>
+      </a>
+
+    </div>
+  </div>
+</div>

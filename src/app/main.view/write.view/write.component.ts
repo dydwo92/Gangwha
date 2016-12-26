@@ -8,25 +8,25 @@ import {
 import { Router } from '@angular/router';
 
 import { NgForm } from '@angular/forms';
-
-export class Article{
-  constructor(public name:string, public title:string, public body:string) {};
-}
+import { SecondGatewayService, ArticleService, Article } from '../../service';
 
 @Component({
   selector: 'app-wrtie',
-  templateUrl : './write.component.html'
+  templateUrl : './write.component.html',
+  styleUrls: ['./write.component.css']
 })
 export class WriteComponent implements OnDestroy, AfterViewInit{
-  buttonisOn:  boolean = true;
   editor;
-  article: Article;
+  tagString: string = "";
+  article: Article = new Article("","","",[]);
+  buttonisOn: boolean = true;
 
   @ViewChild('previewArticle') previewArticle: ElementRef;
 
-  constructor(private router: Router){
-      this.article = new Article("yongjae","","");
-  }
+  constructor(
+    private router: Router,
+    private authService: SecondGatewayService,
+    private articleService: ArticleService){}
 
   ngAfterViewInit(){
     tinymce.init({
@@ -50,22 +50,19 @@ export class WriteComponent implements OnDestroy, AfterViewInit{
     tinymce.remove(this.editor);
   }
 
+  tagChange(input: any){
+    this.article.tags = input.replace(/\s/g, '').split(',');
+  }
+
   SubmitArticle(){
     this.buttonisOn = false;
     this.article.body = this.editor.getContent();
-    const sendData = {
-      title : this.article.title,
-      name : this.article.name,
-      body : this.article.body
-    };
-
-    firebase.database().ref('articles').push(sendData).then(
-      ()=> {
-        this.router.navigate(['home']);
-      }).catch(
-      (err) => {
-        this.buttonisOn = true;
-        alert("Uploading Fail!");
-      });
+    let uploadTask = this.articleService.Register(this.article);
+    uploadTask.subscribe((value)=>{
+          if(value){
+            uploadTask.unsubscribe();
+            this.router.navigate(['home']);
+          }
+        });
   }
 }

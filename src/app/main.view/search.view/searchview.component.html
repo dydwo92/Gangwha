@@ -1,0 +1,11 @@
+<div class="panel panel-default" style="border-radius:0px">
+  <div class="panel-body">
+    <h1 style="margin:-5px 0px 5px 0px"><small>
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search : {{ keyword }}
+    </small></h1>
+  </div>
+</div>
+<div *ngFor="let article of articleList">
+  <app-post [article]="article" [userReference]="articleService.userReference[article.uid]"></app-post>
+</div>
+<img *ngIf="!loadingComplete" src="/public/img/loadingCircle.gif" width="50px" style="margin:0 auto; display:block">
