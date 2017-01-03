@@ -29,6 +29,7 @@ export class MenuComponent{
     new Menu("사진 업로드", "image-upload", "glyphicon-picture"),
     new Menu("영상 업로드", "video-upload", "glyphicon-facetime-video"),
     new Menu("검색", "search","glyphicon-search"),
+    new Menu("회계", "accountancy", "glyphicon-usd"),
     new Menu("계정 설정", "setting", "glyphicon-cog")
   ];
 }
