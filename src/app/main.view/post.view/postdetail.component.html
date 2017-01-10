@@ -16,12 +16,12 @@
               class="btn btn-sm btn-default"
               (click)="removeArticle()">삭제</button>
       <button type="button"
-              *ngIf="!article.notification"
+              *ngIf="this.id != articleService.notification_id"
               name="button"
               (click)="registerNotification(true)"
               class="btn btn-sm btn-default">공지</button>
       <button type="button"
-              *ngIf="article.notification"
+              *ngIf="this.id == articleService.notification_id"
               name="button"
               (click)="registerNotification(false)"
               class="btn btn-sm btn-default">공지 취소</button>

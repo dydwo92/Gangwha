@@ -18,22 +18,24 @@ export class DetailComponent {
               private renderer: Renderer){
 
     // Get notification
-    firebase.database().ref('articles').orderByChild('notification').equalTo(true)
-        .once('value').then(snapshot =>{
-          if(snapshot.exists()){
-            let data = snapshot.val();
-            Object.keys(data).forEach(key=>{
-              let pushData = data[key];
-              if(pushData.comments){
-                pushData['comment_length'] = Object.keys(pushData.comments).length;
-              }else{
-                pushData['comment_length'] = 0;
-              }
-              pushData['id'] = key;
-              this.notificationList.push(data[key]);
-            });
+    firebase.database().ref('notification').on('value',snapshot=>{
+      let noti_id = snapshot.val();
+      if(noti_id != ""){
+        firebase.database().ref('articles/'+noti_id).once('value').then(article=>{
+          let data = article.val();
+          if(data.comments){
+            data['comment_length'] = Object.keys(data.comments).length;
+          }else{
+            data['comment_length'] = 0;
           }
+          data['id'] = noti_id;
+          this.notificationList[0] = data;
         });
+      }else{
+        this.notificationList = [];
+      }
+    });
+
 
     // Detecting scroll down
     this.renderer.listenGlobal('window', 'scroll', (event)=>{

@@ -28,10 +28,6 @@ export class PostDetailComponent{
         router.navigate['home'];
       }else{
         let temp = snapshot;
-        // notification
-        if(!temp.notification){
-          temp['notification'] = false;
-        }
 
         // Comments
         this.comments = [];
@@ -93,24 +89,11 @@ export class PostDetailComponent{
     if(bool){
       if(window.confirm("해당 글을 공지하겠습니까? 이전 공지글은 자동으로 취소됩니다.")){
         // 이전 공지글 취소
-        firebase.database().ref('articles/').orderByChild('notification').equalTo(true)
-           .once('value').then(snapshot=>{
-             if(snapshot.exists()){
-               let snapshotVal = snapshot.val();
-               Object.keys(snapshotVal).forEach(child=>{
-                 this.af.database.object('articles/' + child +'/notification').set(false)
-                     .then(()=>{
-                       this.af.database.object('articles/' + this.article['id'] +'/notification').set(true);
-                     });
-               });
-             }else{
-               this.af.database.object('articles/' + this.article['id'] +'/notification').set(true);
-             }
-           });
+        firebase.database().ref('notification').set(this.article['id']);
       }
     }else{
       if(window.confirm("공지를 취소하겠습니까?")){
-        this.af.database.object('articles/' + this.article['id'] +'/notification').set(false);
+        firebase.database().ref('notification').set("");
       }
     }
   }

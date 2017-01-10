@@ -1,4 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { ArticleService } from '../../service';
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html'
@@ -8,7 +10,7 @@ export class PostComponent implements OnInit{
   @Input() userReference:any;
   @ViewChild('articleBody') articleBody: ElementRef;
 
-  constructor(){}
+  constructor(private articleService: ArticleService){}
 
   ngOnInit(){
     this.articleBody.nativeElement.innerHTML = this.article.body;

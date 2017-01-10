@@ -9,6 +9,7 @@ import { SecondGatewayService } from '../../service';
 })
 export class AccountancyComponent implements AfterViewInit{
   keyList = [];
+  buttonisOn = false;
   spend:number = 0;
   get: number = 0;
   accountancy = [{
@@ -55,6 +56,7 @@ export class AccountancyComponent implements AfterViewInit{
         orderByChild: 'id'
       }
     }).subscribe(snapshot=>{
+      this.buttonisOn = true;
       this.spend = 0;
       this.get = 0;
 

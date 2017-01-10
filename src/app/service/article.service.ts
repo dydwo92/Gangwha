@@ -11,10 +11,16 @@ export class Article{
 export class ArticleService{
   tagList:any[] = [];
   userReference: any[] = [];
+  notification_id: string = "";
 
   constructor(
     private af: AngularFire,
     private authService: SecondGatewayService){
+      // get notification_id
+      firebase.database().ref('notification').on('value', snapshot =>{
+        this.notification_id = snapshot.val();
+      });
+
       //get tag list
       firebase.database().ref('tags').on('value', (snapshot) =>{
         this.tagList = [];
