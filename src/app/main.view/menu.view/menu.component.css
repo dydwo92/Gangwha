@@ -73,3 +73,7 @@
 .menuButton:hover{
   background-color: #46b8da;
 }
+
+.fix-to-top{
+	position: fixed;
+}

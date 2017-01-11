@@ -8,8 +8,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
-      <app-menu [scrollMargin]="scrollMargin"></app-menu>
+    <div class="col-sm-3" #leftCol>
+      <app-menu [menuWidth]="leftCol.offsetWidth"></app-menu>
     </div>
     <div class="col-md-8 col-sm-9">
       <router-outlet></router-outlet>

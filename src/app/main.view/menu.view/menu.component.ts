@@ -14,7 +14,7 @@ export class Menu {
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent{
-  @Input() scrollMargin: number;
+  @Input() menuWidth: number;
   mobileMenuDisplay: boolean;
 
   constructor(private authService: SecondGatewayService) {}

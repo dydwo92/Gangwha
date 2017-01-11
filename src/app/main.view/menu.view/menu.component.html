@@ -1,4 +1,4 @@
-<div class="list-group until-sm" [ngStyle]="{marginTop: scrollMargin+'px'}">
+<div class="list-group until-sm fix-to-top" [ngStyle]="{'width': menuWidth-15 +'px'}">
   <a *ngFor="let menu of MenuList" class="list-group-item" [routerLink]="[menu.link]" style="border-radius: 0px">
     <span class="glyphicon {{ menu.glyphicon }} pull-right" aria-hidden="true"></span>{{ menu.name }}
   </a>
